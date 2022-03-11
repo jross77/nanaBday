@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Happy Birthday Nana</title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="balloon-container">
+        <div id = "title">Happy Birthday Nana</div>
+        <div id = "subtitle">I love you so so much! I hope you have the best day. Much Love, Julia
+        </div>
+    </div>
+  </body>
+</html>
+
+<script>
+    function random(num) {
+  return Math.floor(Math.random()*num)
+}
+
+function getRandomStyles() {
+  var r = random(255);
+  var g = random(255);
+  var b = random(255);
+  var mt = random(200);
+  var ml = random(50);
+  var dur = random(5)+15;
+  return `
+  background-color: rgba(${r},${g},${b},0.7);
+  color: rgba(${r},${g},${b},0.7); 
+  box-shadow: inset -7px -3px 10px rgba(${r-10},${g-10},${b-10},0.7);
+  margin: ${mt}px 0 0 ${ml}px;
+  animation: float ${dur}s ease-in infinite
+  `
+}
+
+function createBalloons(num) {
+  var balloonContainer = document.getElementById("balloon-container")
+  for (var i = num; i > 0; i--) {
+  var balloon = document.createElement("div");
+  balloon.className = "balloon";
+  balloon.style.cssText = getRandomStyles();           balloonContainer.append(balloon);
+  }
+}
+
+window.onload = function() {
+  createBalloons(100);
+}
+</script>
